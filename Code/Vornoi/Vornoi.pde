@@ -3,7 +3,7 @@ import java.util.ArrayList;
 // GLOBALS
 int perSampleTry = 100;
 int index = 0;
-int numSamples = 4000;
+int numSamples = 5000;
 Point[] points = new Point[numSamples];
 PImage image;
 ArrayList <Point> allowedPoints = new ArrayList <Point> ();
@@ -24,8 +24,8 @@ class Point {
 }
 
 void setup() {
-  size(490, 490);
-  image = loadImage("./data/test2.jpg");
+  size(540 , 697);
+  image = loadImage("./data/test.jpg");
   image.loadPixels();
 
   for(int y = 0; y < image.height; y++) {
@@ -33,9 +33,9 @@ void setup() {
       int index = y * image.width + x;
       color c = image.pixels[index];
       float brightness = brightness(c);
-      if(brightness < 255) { 
+//      if(brightness < 255) { 
         allowedPoints.add(new Point(new PVector(x, y), c));
-      }
+  //    }
     }
   }
   
@@ -62,12 +62,14 @@ void draw() {
            closestPoint = p;
          }
       }
-      if(closestDistance < threshold) {
+      // if(closestDistance < threshold) {
         stroke(closestPoint.pointColor);
         point(thisPixel.x, thisPixel.y);
-      }
+      // }
     }
   }
+  saveFrame(random(100) + ".jpg");
+  noLoop();
 }
 
 
